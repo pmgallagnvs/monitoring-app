@@ -1,0 +1,7 @@
+{
+    "urls": [
+        "https://google.com",
+        "https://amazon.com"
+    ],
+    "check_interval": 60
+}

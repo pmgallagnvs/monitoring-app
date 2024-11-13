@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL Monitoring Dashboard</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <h1>URL Monitoring Dashboard</h1>
+    <div>
+        <h2>Current Status</h2>
+        <table>
+            <tr>
+                <th>URL</th>
+                <th>Code</th>
+                <th>Status</th>
+                <th>Last Checked</th>
+            </tr>
+            {% for url, statuses in status_data.items() %}
+                <tr>
+                    <td>{{ url }}</td>
+                    <td>{{ statuses[-1]['code'] }}</td>
+                    <td>{{ statuses[-1]['status'] }}</td>
+                    <td>{{ statuses[-1]['timestamp'] }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+    <div>
+        <h2>History</h2>
+        {% for url, statuses in status_data.items() %}
+            <h3>{{ url }}</h3>
+            <table>
+                <tr>
+                    <th>Status</th>
+                    <th>Code</th>
+                    <th>Timestamp</th>
+                </tr>
+                {% for status in statuses %}
+                    <tr>
+                        <td>{{ status['status'] }}</td>
+                        <td>{{ status['code'] }}</td>
+                        <td>{{ status['timestamp'] }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        {% endfor %}
+    </div>
+</body>
+</html>
